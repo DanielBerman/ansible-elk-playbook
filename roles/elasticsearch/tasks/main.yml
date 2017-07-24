@@ -19,4 +19,13 @@
    regexp: 'http.port:'
    line: 'http.port: 9200'
 # Starting Elasticsearch
-- shell: sudo service elasticsearch start
+- name: Enabling Elasticsearch service
+ systemd:
+   name: elasticsearch
+   enabled: yes
+   daemon_reload: yes
+# Start Elasticsearch service
+- name: Starting Elasticsearch service
+ systemd:
+   name: elasticsearch
+   state: started
