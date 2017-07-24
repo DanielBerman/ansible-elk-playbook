@@ -1,0 +1,34 @@
+---
+#
+# Installing Kibana
+#
+# Install Kibana
+- name: Install Kibana with apt-get
+ - shell: sudo apt-get install kibana
+# Configurations
+- name: Kibana configurations
+lineinfile:
+   destfile: /etc/kibana/kibana.yml
+   regexp: 'server.host:'
+   line: 'server.host: 0.0.0.0'
+- name: Kibana configurations
+lineinfile:
+   destfile: /etc/kibana/kibana.yml
+   regexp: 'server.port:'
+   line: 'server.port: 5601'
+- name: Kibana configurations
+lineinfile:
+   destfile: /etc/kibana/kibana.yml
+   regexp: 'elasticsearch.url:'
+   line: 'elasticsearch.url: "http://localhost:9200"'
+# Starting Kibana
+- name: Enabling Kibana service
+ systemd:
+   name: kibana
+   enabled: yes
+   daemon_reload: yes
+# Start Kibana service
+- name: Starting Kibana service
+ systemd:
+   name: kibana
+   state: started
