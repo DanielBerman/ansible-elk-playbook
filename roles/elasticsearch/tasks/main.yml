@@ -2,29 +2,21 @@
 #
 # Installing Elasticsearch
 #
-# Add apt-key 
-- name: Add apt-key
- apt_key:
-   url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
-   state: present
-# Add the Elasticsearch APT-repository
-- name: Adding Elasticsearch APT repository
- apt_repository:
-   repo: deb https://artifacts.elastic.co/packages/5.x/apt stable main
-   state: present
 # Install Elasticsearch
-- name: Update repos cache, install Elasticsearch
- apt:
-   name: elasticsearch
-   update_cache: yes
-# Update Elasticsearch config file to allow remote connections
-- name: Updating config file to allow outside access
+ - shell: sudo wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+ - shell: sudo apt-get install apt-transport-https
+ - shell: sudo echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list
+ - shell: sudo apt-get update && sudo apt-get install elasticsearch
+# Configurations
+ - name: Updating the config file to allow remote access
  lineinfile:
    destfile: /etc/elasticsearch/elasticsearch.yml
    regexp: 'network.host:'
    line: 'network.host: 0.0.0.0'
-# Start Elasticsearch
-- name: Starting Elasticsearch
- service:
-   name: elasticsearch
-   state: started
+ - name: Updating the config file to define port
+ lineinfile:
+   destfile: /etc/elasticsearch/elasticsearch.yml
+   regexp: 'http.port:'
+   line: 'http.port: 9200'
+# Starting Elasticsearch
+- shell: sudo service elasticsearch start
