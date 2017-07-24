@@ -2,14 +2,17 @@
 #
 # Installing Metricbeat
 #
-# Enable Metricbeat service
-- name: Enabling Metricbeat service
- systemd:
-   name: metricbeat
-   enabled: yes
-   daemon_reload: yes
-# Start Metricbeat service
-- name: Starting Metricbeat service
- systemd:
+
+# Install Metricbeat 
+
+ - name: Install Metricbeat with apt
+   apt:
+    name: metricbeat
+    update_cache: yes
+    
+# Starting Metricbeat
+
+- name: Starting Metricbeat
+ service:
    name: metricbeat
    state: started
