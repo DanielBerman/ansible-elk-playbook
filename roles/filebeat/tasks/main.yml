@@ -3,6 +3,21 @@
 # Installing Filebeat
 #
 
+# Download SSL certificate:
+
+- name: Download certificate
+  shell: wget https://raw.githubusercontent.com/logzio/public-certificates/master/COMODORSADomainValidationSecureServerCA.crt
+  
+# Create directory for certification
+
+- name: Make new directory for cert
+  shell: mkdir -p /etc/pki/tls/certs
+  
+# Move cert to directory
+
+- name: Move SSL certification to new folder
+  shell: cp COMODORSADomainValidationSecureServerCA.crt /etc/pki/tls/certs/
+
 # Install Filebeat 
 
 - name: Install Filebeat with apt
