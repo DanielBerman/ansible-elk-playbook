@@ -1,22 +1,13 @@
-----
+---
 #
-# Install Java 
+# Install Java 8
 #
 
-- name: Update and upgrade apt packages
-  become: true
-  apt:
-   upgrade: yes
-   update_cache: yes 
+- name: Install Java 8 requirements
+  shell: sudo apt-get install software-properties-common python-software-properties
 
-- name: Install java 8 requirements
-  apt: name=python-software-properties
-
-- name: Add Java 8 repository
-  apt_repository: repo='ppa:webupd8team/java'
-
-- name: Agree to oracle license
-  debconf: name=oracle-java8-installer question=shared/accepted-oracle-license-v1-1 vtype=select value=true
+- name: Update apt packages
+  shell: sudo apt-get update
 
 - name: Install Java 8
-  apt: name=oracle-java8-installer force=yes
+  shell: sudo apt-get install default-jre
