@@ -9,7 +9,16 @@
   apt:
    name: filebeat
    update_cache: yes
-    
+ 
+# Replace Filebeat configuration to ship to Logz.io. 
+
+- name: Replace default filebeat.yml configurations
+  template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+  notify:
+    - restart filebeat
+
 # Starting Filebeat
 
 - name: Starting Filebeat
