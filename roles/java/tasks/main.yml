@@ -1,13 +1,29 @@
 ---
 #
-# Install Java 8
+# Installing Java 8
 #
 
-- name: Install Java 8 requirements
-  shell: sudo apt-get install software-properties-common python-software-properties
+# Update apt repos
 
-- name: Update apt packages
-  shell: sudo apt-get update
+- name: Udpate apt
+  apt:
+    update_cache: yes
 
-- name: Install Java 8
-  shell: sudo apt-get install default-jre
+# Install Java 8 requirements
+
+- name: Install Java requirements
+  apt:
+    name: python-software-properties
+    state: present
+
+- name: Install Java requirements
+  apt:
+    name: software-properties-common
+    state: present
+
+# Install Java 8
+
+- name: Install Java 8 
+  apt:
+    name: defualt-jre
+    state: present
