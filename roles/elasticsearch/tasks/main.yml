@@ -4,11 +4,12 @@
 #
 
 # Add Elasticsearch apt key
- - name: Add Elasticsearch apt-key
-   apt_key:
-    url: "https://packages.elastic.co/GPG-KEY-elasticsearch"
-    state: present
-    
+
+- name: Add Elasticsearch apt-key
+  apt_key:
+   url: "https://packages.elastic.co/GPG-KEY-elasticsearch"
+   state: present
+
 # Add the Elasticsearch apt repo
 
 - name: Adding Elasticsearch repo
@@ -19,14 +20,14 @@
 # Installing Elasticsearch
 
 - name: Update repositories cache and install Elasticsearch
- apt:
+  apt:
    name: elasticsearch
    update_cache: yes
    
 # Update Elasticsearch config file to allow access. To secure Elasticsearch, bind to 'localhost'. 
 
 - name: Updating the config file to allow outside access
- lineinfile:
+  lineinfile:
    destfile: /etc/elasticsearch/elasticsearch.yml
    regexp: 'network.host:'
    line: 'network.host: 0.0.0.0'
@@ -34,13 +35,14 @@
 # Update Elasticsearch port in config file 
 
 - name: Updating the port in config file 
- lineinfile:
+  lineinfile:
    destfile: /etc/elasticsearch/elasticsearch.yml
    regexp: 'http.port:'
    line: 'http.port: 9200'
  
 # Start Elasticsearch
 - name: Starting Elasticsearch
- service:
+  service:
    name: elasticsearch
    state: started
+    
