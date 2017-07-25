@@ -3,12 +3,6 @@
 # Installing Java 8
 #
 
-# Update apt repos
-
-- name: Udpate apt
-  apt:
-    update_cache: yes
-
 # Install Java 8 requirements
 
 - name: Install Java requirements
@@ -20,6 +14,12 @@
   apt:
     name: software-properties-common
     state: present
+
+# Update apt repos
+
+- name: Udpate apt
+  apt:
+    update_cache: yes
 
 # Install Java 8
 
