@@ -3,27 +3,21 @@
 # Installing Java 8
 #
 
-# Install Java 8 requirements
+# Add the Java repo
 
-- name: Install Java requirements
+- name: Add the Java PPA repo
+  apt_repository: 
+   repo: ppa:webupd8team/java
+
+# Accept Oracle license
+
+- name: Automatically accept the Oracle license 
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+  
+# Install Java 
+
+- name: Install Java 8
   apt:
-    name: python-software-properties
-    state: present
-
-- name: Install Java requirements
-  apt:
-    name: software-properties-common
-    state: present
-
-# Update apt repos
-
-- name: Udpate apt
-  apt:
-    update_cache: yes
-
-# Install Java 8
-
-- name: Install Java 8 
-  apt:
-    name: defualt-jre
-    state: present
+   name: oracle-java8-installer
+   state: present
+   update_cache: yes
