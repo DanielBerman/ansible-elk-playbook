@@ -4,7 +4,7 @@ This playbook is for setting up version 5.x of the ELK Stack on a remote server.
 
 ## Notes and requirements
 
- - The playbook was built and tested on Ubuntu 16.04 VMs
+ - The playbook was built and tested on Ubuntu 16.04 VMs, for ELK versions 5.x 
  - You will need Ansible installed and running
  - Playbook is currently configured to set up the ELK stack together with Metricbeat for server perf monitoring. There is a role for Filebeat as well. You just need to add the Filebeat role to your 'site.yml' file.
  
