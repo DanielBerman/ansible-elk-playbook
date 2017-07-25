@@ -4,6 +4,8 @@
 #
 - hosts: elkservers
   remote_user: ubuntu
+  become: yes
+  become_user: root
   roles:
   - { role: java }
   - { role: elasticsearch }
