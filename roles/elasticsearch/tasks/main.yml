@@ -5,7 +5,7 @@
 
 # Add Elasticsearch apt key
 
-- name: Add Elasticsearch apt-key
+- name: Add Elasticsearch apt key
   apt_key:
    url: "https://packages.elastic.co/GPG-KEY-elasticsearch"
    state: present
@@ -19,12 +19,12 @@
 
 # Installing Elasticsearch
 
-- name: Update repositories cache and install Elasticsearch
+- name: Install Elasticsearch
   apt:
    name: elasticsearch
    update_cache: yes
    
-# Update Elasticsearch config file to allow access. To secure Elasticsearch, bind to 'localhost'. 
+# Update Elasticsearch config file to allow access (to secure Elasticsearch, bind to 'localhost'). 
 
 - name: Updating the config file to allow outside access
   lineinfile:
