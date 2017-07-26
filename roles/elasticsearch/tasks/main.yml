@@ -10,7 +10,7 @@
    url: "https://packages.elastic.co/GPG-KEY-elasticsearch"
    state: present
 
-# Add the Elasticsearch apt repo
+# Add the Elasticsearch apt repo. For versions 6 of the stack - use '6.x-prerelease':
 
 - name: Adding Elasticsearch repo
   apt_repository:
