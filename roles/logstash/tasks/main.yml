@@ -1,24 +1,20 @@
 ---
-- name: Add Logstash GPG key.
-  rpm_key:
-    key: https://packages.elastic.co/GPG-KEY-elasticsearch
-    state: present
 
-- name: Add Logstash yum repository.
-  template:
-    src: logstash.repo.j2
-    dest: /etc/yum.repos.d/logstash.repo
-    mode: 0644
+- name: Download Logstash RPM package
+  uri:
+    url: "{{ logstash_rpm_url | default('https://artifacts.elastic.co/downloads/logstash/logstash-5.3.3.rpm') }}"
+    dest: "{{ rpm_download_directory | default('/var/cache/yum/x86_64/7/extras/packages') }}"
 
-- name: Install Logstash.
+- name: Install Logstash
   yum: 
-    name: logstash
+    name: "{{ rpm_download_directory | default('/var/cache/yum/x86_64/7/extras/packages') }}/{{ logstash_rpm_package | default('logstash-5.3.3.rpm') }}"
     state: installed
+  register: rpm_installation
 
 # Logstash configuration
 - include: config.yml
   
-- name: Start Logstash.
+- name: Start Logstash
   service: 
     name: logstash 
     state: restarted
