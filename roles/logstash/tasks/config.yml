@@ -1,0 +1,12 @@
+---
+
+# This task is optional no need to create logstash.yml
+
+- name: Create Logstash configuration files.
+  template:
+    src: "logstash.conf"
+    dest: "/etc/logstash/conf.d/logstash.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart logstash
