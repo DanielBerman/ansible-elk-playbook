@@ -20,6 +20,6 @@ resource "aws_instance" "example" {
    ami           = "ami-0287acb18b6d8efff"
    instance_type = "t2.micro"
    provisioner "local-exec" {
-   command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key ./jenkinskey.pem -i '${aws_instance.example.public_dns},' site.yml"
+   command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key ./jenkinskey.pem -i '${aws_instance.example.public_ip},' site.yml"
  }
 }
