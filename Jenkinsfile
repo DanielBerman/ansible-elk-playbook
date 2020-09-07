@@ -23,7 +23,7 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                            git "https://github.com/az900spallawkar/Test-Terraform.git"
+                            git "https://github.com/az900spallawkar/ansible-elk-playbook.git"
                         }
                     }
                 }
