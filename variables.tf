@@ -1,11 +1,11 @@
 variable "public_key_path" {
   description = "Path to the public SSH key you want to bake into the instance."
-  default     = "/usr/bin/key.pub"
+  default     = "/var/lib/jenkins/terraform.pub"
 }
 
 variable "private_key_path" {
   description = "Path to the private SSH key, used to access the instance."
-  default     = "/usr/bin/key"
+  default     = "/var/lib/jenkins/terraform"
 }
 
 variable "project_name" {
