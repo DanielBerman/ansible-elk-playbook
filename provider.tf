@@ -39,8 +39,14 @@ resource "aws_security_group" "test_sg" {
 resource "aws_instance" "example" {
    ami           = "ami-0287acb18b6d8efff"
    instance_type = "t2.micro"
-   key_name        = "jenkinskey"
    security_groups = ["${aws_security_group.test_sg.name}"]
+  
+   metadata {
+    Name     = "Terraform and Ansible Demo"
+    ssh-keys = "${var.ssh_user}:${file("${var.public_key_path}")}"
+  }
+
+  metadata_startup_script = "echo hi > /test.txt"
    
    provisioner "remote-exec" {
     inline = ["echo 'Hello World'"]
