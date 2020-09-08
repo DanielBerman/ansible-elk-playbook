@@ -40,7 +40,7 @@ resource "aws_instance" "example" {
    instance_type = "t2.micro"
    key_name        = "jenkinskey"
    security_groups = ["${aws_security_group.test_sg.name}"]
-   provisioner "remote-exec" {
+   provisioner "local-exec" {
    command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key /Users/saziyamukadam/Downloads/jenkinskey.pem -i '${aws_instance.example.public_dns},' site.yml"
  }
 }
