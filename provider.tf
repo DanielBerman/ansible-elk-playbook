@@ -18,7 +18,7 @@ provider "aws" {
 
 resource "aws_key_pair" "sshkey" {
   key_name   = "SSH-Key"
-  public_key = file("var.public_key_path")
+  public_key = file(var.public_key_path)
   }
 
 resource "aws_security_group" "test_sg" {
@@ -52,8 +52,8 @@ resource "aws_instance" "example" {
     connection {
       type        = "ssh"
       user        = var.ssh_user
-      private_key = file("var.private_key_path")
-      host        = self.private_ip
+      private_key = file(var.private_key_path)
+      host        = self.public_ip
       }
     }
    provisioner "local-exec" {
