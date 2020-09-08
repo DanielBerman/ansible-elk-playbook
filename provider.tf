@@ -17,8 +17,8 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "sshkey" {
-  key_name   = "SSH-Key2"
-  public_key = file(var.public_key_path)
+  key_name   = "SSH-Key3"
+  public_key = file("key.pub")
   }
 
 resource "aws_security_group" "test_sg" {
@@ -56,7 +56,13 @@ resource "aws_instance" "example" {
     #  host        = self.public_ip
     #  }
    # }
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("key")
+    host        = self.public_ip
+  }
    provisioner "local-exec" {
-   command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=True ansible-playbook -u ubuntu --private-key ${var.private_key_path} -i '${aws_instance.example.public_dns},' site.yml"
+   command = "sleep 120; ansible-playbook -u ubuntu -i '${aws_instance.example.public_dns},' site.yml"
  }
 }
