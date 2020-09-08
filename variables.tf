@@ -1,12 +1,11 @@
 variable "public_key_path" {
   description = "Path to the public SSH key you want to bake into the instance."
-  default     = "/home/ubuntu/.ssh/id_rsa.pub"
+  default     = "~/.ssh/terraform.pub"
 }
 
 variable "private_key_path" {
   description = "Path to the private SSH key, used to access the instance."
-  default     = "/home/ubuntu/.ssh/id_rsa"
-}
+  default     = "~/.ssh/terraform"
 
 variable "project_name" {
   description = "Name of your AWS project.  Example: ansible-terraform-V1"
