@@ -52,8 +52,8 @@ resource "aws_instance" "example" {
 
     connection {
       type        = "ssh"
-      user        = "${var.ssh_user}"
-      private_key = "${file("${var.private_key_path}")}"
+      user        = "var.ssh_user"
+      private_key = "file(var.private_key_path)"
     }
   }
    provisioner "local-exec" {
