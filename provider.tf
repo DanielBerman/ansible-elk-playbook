@@ -18,7 +18,7 @@ provider "aws" {
 
 resource "aws_key_pair" "sshkey" {
   key_name   = "SSH-Key3"
-  public_key = file("key.pub")
+  public_key = file("/home/ubuntu/.ssh/id_rsa/key.pub")
   }
 
 resource "aws_security_group" "test_sg" {
@@ -59,7 +59,7 @@ resource "aws_instance" "example" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("key")
+    private_key = file("/home/ubuntu/.ssh/id_rsa/key")
     host        = self.public_ip
   }
    provisioner "local-exec" {
