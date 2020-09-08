@@ -48,7 +48,7 @@ resource "aws_instance" "example" {
       user        = "var.ssh_user"
       private_key = "file(var.private_key_path)"
     }
-  }
+  
    provisioner "local-exec" {
    command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key ${var.private_key_path} -i '${aws_instance.example.public_dns},' site.yml"
  }
