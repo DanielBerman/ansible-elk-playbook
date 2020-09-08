@@ -17,8 +17,8 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "sshkey" {
-  key_name   = "SSH-Key10"
-  public_key = ${file(var.public_key_path)}
+  key_name   = "SSH-Key11"
+  public_key = file(var.public_key_path)
   }
 
 resource "aws_security_group" "test_sg" {
@@ -59,8 +59,8 @@ resource "aws_instance" "example" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = ${file(var.private_key_path)}
-    host        = self.public_ip
+    private_key = file(var.private_key_path)
+    host        = self.private_ip
   }
    provisioner "local-exec" {
    command = "sleep 120; ansible-playbook -u ubuntu --private-key ${var.private_key_path} -i '${aws_instance.example.public_dns},' site.yml"
