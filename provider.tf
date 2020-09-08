@@ -18,7 +18,7 @@ provider "aws" {
 
 resource "aws_key_pair" "sshkey" {
   key_name   = "${var.stack}-key"
-  public_key = "file(var.ssh_key)"
+  public_key = "file(var.public_key_path)"
 }
 
 resource "aws_security_group" "test_sg" {
