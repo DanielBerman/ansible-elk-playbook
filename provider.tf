@@ -16,9 +16,9 @@ provider "aws" {
   region  = "eu-west-2"
 }
 
-resource "aws_key_pair" "ssh-key" {
+resource "aws_key_pair" "sshkey" {
   key_name   = "SSH-Key"
-  public_key = "file(var.public_key_path)"
+  public_key = file("var.public_key_path")
   }
 
 resource "aws_security_group" "test_sg" {
@@ -41,7 +41,7 @@ resource "aws_security_group" "test_sg" {
 }
 
 resource "aws_instance" "example" {
-   key_name         = aws_key_pair.ssh-key.key_name
+   key_name         = aws_key_pair.sshkey.key_name
    ami              = "ami-0287acb18b6d8efff"
    instance_type    = "t2.micro"
    security_groups  = ["${aws_security_group.test_sg.name}"]
@@ -52,7 +52,7 @@ resource "aws_instance" "example" {
     connection {
       type        = "ssh"
       user        = var.ssh_user
-      private_key = file(var.private_key_path)
+      private_key = file("var.private_key_path")
       host        = self.private_ip
       }
     }
