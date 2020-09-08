@@ -17,7 +17,7 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "sshkey" {
-  key_name   = "SSH-Key4"
+  key_name   = "SSH-Key5"
   public_key = file("/home/ubuntu/usr/bin/key.pub")
   }
 
