@@ -40,10 +40,7 @@ resource "aws_instance" "example" {
    instance_type = "t2.micro"
    security_groups = ["${aws_security_group.test_sg.name}"]
   
-  
-   
-   provisioner "remote-exec" {
-    inline = ["echo 'Hello World'"]
+ 
 
     connection {
       type        = "ssh"
@@ -53,6 +50,6 @@ resource "aws_instance" "example" {
     }
   }
    provisioner "local-exec" {
-   command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key ${var.private_key_path} -i '${aws_instance.example.public_dns},' site.yml"
+   command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key ${var.private_key_path} -i '${aws_instance.example.public_dns},' site.yml"
  }
 }
