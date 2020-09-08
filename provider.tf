@@ -14,7 +14,6 @@ terraform {
 provider "aws" {
   profile = "default"
   region  = "eu-west-2"
-  project = "${var.project_name}"
 }
 
 resource "aws_security_group" "test_sg" {
