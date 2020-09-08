@@ -17,7 +17,7 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "sshkey" {
-  key_name   = "SSH-Key"
+  key_name   = "SSH-Key1"
   public_key = file(var.public_key_path)
   }
 
