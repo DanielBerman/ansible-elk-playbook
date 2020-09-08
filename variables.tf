@@ -6,6 +6,7 @@ variable "public_key_path" {
 variable "private_key_path" {
   description = "Path to the private SSH key, used to access the instance."
   default     = "~/.ssh/terraform"
+}
 
 variable "project_name" {
   description = "Name of your AWS project.  Example: ansible-terraform-V1"
