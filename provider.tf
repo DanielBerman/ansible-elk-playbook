@@ -16,6 +16,11 @@ provider "aws" {
   region  = "eu-west-2"
 }
 
+resource "aws_key_pair" "sshkey" {
+  key_name   = "${var.stack}-key"
+  public_key = "file(var.ssh_key)"
+}
+
 resource "aws_security_group" "test_sg" {
   name = "test_sg"
 
