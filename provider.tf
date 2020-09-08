@@ -14,6 +14,7 @@ terraform {
 provider "aws" {
   profile = "default"
   region  = "eu-west-2"
+  project = "${var.project_name}"
 }
 
 resource "aws_security_group" "test_sg" {
@@ -51,6 +52,6 @@ resource "aws_instance" "example" {
     }
   }
    provisioner "local-exec" {
-   command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key /Users/saziyamukadam/Downloads/jenkinskey.pem -i '${aws_instance.example.public_dns},' site.yml"
+   command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key ${var.private_key_path} -i '${aws_instance.example.public_dns},' site.yml"
  }
 }
