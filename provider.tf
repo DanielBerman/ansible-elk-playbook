@@ -51,7 +51,7 @@ resource "aws_instance" "example" {
    
     connection {
       type        = "ssh"
-      user        = "${var.ssh_user}"
+      user        = var.ssh_user
       private_key = file(var.private_key_path)
       host        = self.public_ip
       }
