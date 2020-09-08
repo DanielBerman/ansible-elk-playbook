@@ -53,6 +53,7 @@ resource "aws_instance" "example" {
       type        = "ssh"
       user        = var.ssh_user
       private_key = file(var.private_key_path)
+      host        = self.private_ip
       }
     }
    provisioner "local-exec" {
