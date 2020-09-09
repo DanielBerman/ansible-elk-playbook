@@ -1,6 +1,6 @@
 variable "public_key_path" {
   description = "Path to the public SSH key you want to bake into the instance."
-  default     = "/var/lib/jenkins/terraform.pub"
+  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxsPxL81YchLmn1e93GDiyPOZeUUROhmcJYwDBlrjOKDMbFmUy7QCuRlQ8lILEqYtj9u6f3Z+DsXsGIPV38BmG6oCEjSlPMTTITAcAmZgIfMFFbEDdMy7y9nA3zNqigS5quWBQ+Pm+jscWnetM8oR6f8p7FcCM+0BMyBet2G9qHE9XolyZ4qkCte9lEMEy71+Eld6GxERL5KTzO7WMGFIKo7I73u8+YQqM19lNg6ehCwGSmm17W51+67GGUUVoz1M959DDv2pu+DmH5aMrNtO27y3N0nlUhZLfJljVpVbnttBblJx5ZAt4Wq+rKVp5dgurrwXG7K927AvcyPdd8G8h shaziyamukada83@gmail.com"
 }
 
 variable "private_key_path" {
