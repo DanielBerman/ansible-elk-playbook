@@ -16,10 +16,20 @@ provider "aws" {
   region  = "eu-west-2"
 }
 
-resource "aws_key_pair" "terraform-ansible" {
-  key_name   = "terr-ansib-key"
-  public_key = var.public_key_path
-  }
+variable "key_name" {default="my-key"}
+resource "tls_private_key" "example" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+resource "aws_key_pair" "generated_key" {
+  key_name   = "${var.key_name}"
+  public_key = "${tls_private_key.example.public_key_openssh}"
+}
+
+#resource "aws_key_pair" "terraform-ansible" {
+#  key_name   = "terr-ansib-key"
+#  public_key = var.public_key_path
+#  }
 
 resource "aws_security_group" "test_sg" {
   name = "test_sg"
@@ -41,7 +51,8 @@ resource "aws_security_group" "test_sg" {
 }
 
 resource "aws_instance" "example" {
-   key_name         = aws_key_pair.terraform-ansible.key_name
+  # key_name         = aws_key_pair.terraform-ansible.key_name
+   key_name         = aws_key_pair.generated_key.key_name
    ami              = "ami-0287acb18b6d8efff"
    instance_type    = "t2.micro"
    security_groups  = ["${aws_security_group.test_sg.name}"]
