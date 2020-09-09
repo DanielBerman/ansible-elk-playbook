@@ -16,7 +16,7 @@ provider "aws" {
   region  = "eu-west-2"
 }
 
-variable "key_name" {default="my-key2"}
+variable "key_name" {default="my-key3"}
 resource "tls_private_key" "example" {
   algorithm = "RSA"
   rsa_bits  = 4096
@@ -76,6 +76,6 @@ resource "aws_instance" "example" {
   }
    provisioner "local-exec" {
   # command = "sleep 120; ansible-playbook host_key_checking=false -u ubuntu --private-key ${var.private_key_path} -i '${aws_instance.example.public_dns},' site.yml"
-   command = "sleep 120; ansible-playbook -e host_key_checking=False -u ubuntu -i '${aws_instance.example.public_dns}', site.yml"
+   command = "sleep 120; ansible-playbook -e host_key_checking=False -u ubuntu --private-key ${tls_private_key.example.private_key_pem} -i '${aws_instance.example.public_dns},' site.yml"
  }
 }
