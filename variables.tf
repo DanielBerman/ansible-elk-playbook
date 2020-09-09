@@ -8,10 +8,10 @@ variable "private_key_path" {
   default     = "/home/ubuntu/.ssh/id_rsa"
 }
 
-variable "project_name" {
-  description = "Name of your AWS project.  Example: ansible-terraform-V1"
-  default     = "ansible-terraform-V1"
-}
+#variable "project_name" {
+#  description = "Name of your AWS project.  Example: ansible-terraform-V1"
+#  default     = "ansible-terraform-V1"
+#}
 
 variable "ssh_user" {
   description = "SSH user name to connect to your instance."
