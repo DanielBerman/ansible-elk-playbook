@@ -18,7 +18,7 @@ provider "aws" {
 
 resource "aws_key_pair" "terraform-ansible" {
   key_name   = "terraform-ansible-key"
-  public_key = "${var.public_key_path}"
+  public_key = var.public_key_path
   }
 
 resource "aws_security_group" "test_sg" {
@@ -41,7 +41,7 @@ resource "aws_security_group" "test_sg" {
 }
 
 resource "aws_instance" "example" {
-   key_name         = "${aws_key_pair.terraform-ansible.key_name}"
+   key_name         = aws_key_pair.terraform-ansible.key_name
    ami              = "ami-0287acb18b6d8efff"
    instance_type    = "t2.micro"
    security_groups  = ["${aws_security_group.test_sg.name}"]
