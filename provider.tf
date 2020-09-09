@@ -16,7 +16,7 @@ provider "aws" {
   region  = "eu-west-2"
 }
 
-variable "key_name" {default="my-key6"}
+variable "key_name" {default="my-key7"}
 resource "tls_private_key" "example" {
   algorithm = "RSA"
   rsa_bits  = 4096
