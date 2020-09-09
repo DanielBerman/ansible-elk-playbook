@@ -17,7 +17,7 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "terraform-ansible" {
-  key_name   = "terraform-ansible-key"
+  key_name   = "terr-ansi-key"
   public_key = var.public_key_path
   }
 
