@@ -75,6 +75,6 @@ resource "aws_instance" "example" {
 #  }
    provisioner "local-exec" {
   # command = "sleep 120; ansible-playbook host_key_checking=false -u ubuntu --private-key ${var.private_key_path} -i '${aws_instance.example.public_dns},' site.yml"
-   command = "sleep 120; ansible-playbook -e 'host_key_checking=False' -i '${aws_instance.example.public_dns},' ansible-elk-playbook/site.yml"
+   command = "sleep 120; ansible-playbook -e host_key_checking=False -u ubuntu -i '${aws_instance.example.public_dns}', site.yml"
  }
 }
