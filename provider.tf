@@ -16,10 +16,10 @@ provider "aws" {
   region  = "eu-west-2"
 }
 
-resource "aws_key_pair" "sshkey" {
-  key_name   = "SSH-Key14"
-  public_key = file("var.public_key_path")
-  }
+#resource "aws_key_pair" "sshkey" {
+#  key_name   = "SSH-Key15"
+#  public_key = file("var.public_key_path")
+#  }
 
 resource "aws_security_group" "test_sg" {
   name = "test_sg"
@@ -41,7 +41,7 @@ resource "aws_security_group" "test_sg" {
 }
 
 resource "aws_instance" "example" {
-   key_name         = aws_key_pair.sshkey.key_name
+#   key_name         = aws_key_pair.sshkey.key_name
    ami              = "ami-0287acb18b6d8efff"
    instance_type    = "t2.micro"
    security_groups  = ["${aws_security_group.test_sg.name}"]
@@ -56,13 +56,14 @@ resource "aws_instance" "example" {
     #  host        = self.public_ip
     #  }
    # }
-  connection {
-    type        = "ssh"
-    user        = "ubuntu"
-    private_key = file("var.private_key_path")
-    host        = self.public_ip
-  }
+ # connection {
+  #  type        = "ssh"
+  #   user        = "ubuntu"
+ #   private_key = file("var.private_key_path")
+ #   host        = self.public_ip
+#  }
    provisioner "local-exec" {
-   command = "sleep 120; ansible-playbook -u ubuntu --private-key ${var.private_key_path} -i '${aws_instance.example.public_dns},' site.yml"
+  # command = "sleep 120; ansible-playbook host_key_checking=false -u ubuntu --private-key ${var.private_key_path} -i '${aws_instance.example.public_dns},' site.yml"
+   command = "sleep 120; ansible-playbook -e 'host_key_checking=false' -u ubuntu -i '${aws_instance.example.public_dns},' site.yml"
  }
 }
