@@ -1,6 +1,6 @@
 variable "public_key_path" {
   description = "Path to the public SSH key you want to bake into the instance."
-  default     = "/home/ubuntu/.ssh/authorized_keys"
+  default     = "~/.ssh/authorized_keys"
 }
 
 variable "private_key_path" {
