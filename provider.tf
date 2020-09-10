@@ -26,10 +26,10 @@ provider "aws" {
 #  public_key = tls_private_key.example.public_key_openssh
 #}
 
-#resource "aws_key_pair" "terraform-ansible" {
-#  key_name   = "terr-ansib-key"
-#  public_key = var.public_key_path
-#  }
+resource "aws_key_pair" "ubuntu" {
+  key_name   = "ubuntu"
+  public_key = "jenkinskey"
+  }
 
 resource "aws_security_group" "test_sg" {
   name = "test_sg"
