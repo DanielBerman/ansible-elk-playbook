@@ -28,7 +28,7 @@ provider "aws" {
 
 resource "aws_key_pair" "ubuntu" {
   key_name   = "ubuntu"
-  public_key = "sshjenkins"
+  public_key = "jenkinskey"
   }
 
 resource "aws_security_group" "test_sg" {
