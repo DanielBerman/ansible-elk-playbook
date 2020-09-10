@@ -72,7 +72,7 @@ resource "aws_instance" "example" {
     user        = "ubuntu"
    # private_key = file("var.private_key_path")
    # private_key = tls_private_key.example.private_key_pem
-    private_key  = file("jenkinskey")
+    private_key  = file(var.private_key_path)
     host        = self.public_ip
   }
  }
