@@ -52,7 +52,7 @@ resource "aws_security_group" "test_sg" {
 
 resource "aws_instance" "example" {
   # key_name         = aws_key_pair.terraform-ansible.key_name
-   key_name         = aws_key_pair.generated_key.key_name
+   key_name         = aws_key_pair.jenkinskey
    ami              = "ami-0287acb18b6d8efff"
    instance_type    = "t2.micro"
    security_groups  = ["${aws_security_group.test_sg.name}"]
@@ -71,7 +71,8 @@ resource "aws_instance" "example" {
     type        = "ssh"
     user        = "ubuntu"
    # private_key = file("var.private_key_path")
-    private_key =  tls_private_key.example.private_key_pem
+   # private_key = tls_private_key.example.private_key_pem
+    private_key  = file(
     host        = self.public_ip
   }
  }
