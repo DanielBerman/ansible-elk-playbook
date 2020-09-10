@@ -50,7 +50,7 @@ resource "aws_security_group" "test_sg" {
   }
 }
 
-#resource "aws_instance" "example" {
+resource "aws_instance" "example" {
   # key_name         = aws_key_pair.terraform-ansible.key_name
    key_name         = "${aws_key_pair.jenkinskey}"
    ami              = "ami-0287acb18b6d8efff"
