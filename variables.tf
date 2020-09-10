@@ -4,8 +4,8 @@ variable "public_key_path" {
 }
 
 variable "private_key_path" {
-  description = "Path to the private SSH key, used to access the instance."
-  default     = "sshjenkins"
+ # description = "Path to the private SSH key, used to access the instance."
+#  default     = "sshjenkins"
 }
 
 #variable "project_name" {
