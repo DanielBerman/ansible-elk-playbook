@@ -28,8 +28,8 @@ provider "aws" {
 
 resource "aws_key_pair" "ubuntu" {
   key_name   = "ubuntu"
- # public_key = file(var.public_key_path)
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClVV5FgX+HlcZVv/mDYn9bhPTVwS0YwqdZzcscqZNpcqUOtEJg0a27w/+ijr5VVYKiZB+67dGC1XvmUHRR1R1thBKjfFRBgxDuW63ra2vtRAItOG7lHfhcJluxU2K7jIym1S+J60bB2xUXEeibqL+1uZGpPdafUgSyPWidVBFcBaK7nXGPZe5YIGFGK33Mrwjs/Zwvh1mdILcBIC0cIks25lK2br6ozc8mNB3rq0K3zutZnVq54C2XEbNTAh+bpXUXoZCwapv8xAprwW9Ydqkrg6ub7UflzjR1RdtPLQ8xLQ78V0xY/naOdwYb+3jk32+uEaQHrk2eBZScEYuaOt+V"
+  public_key = file(var.public_key_path)
+  
   }
 
 resource "aws_security_group" "test_sg" {
