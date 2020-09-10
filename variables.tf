@@ -3,10 +3,10 @@ variable "public_key_path" {
   default     = "~/.ssh/authorized_keys"
 }
 
-variable "private_key_path" {}
- # description = "Path to the private SSH key, used to access the instance."
-#  default     = "sshjenkins"
-#}
+variable "private_key_path" {
+  description = "Path to the private SSH key, used to access the instance."
+  default     = "jenkinskey"
+}
 
 #variable "project_name" {
 #  description = "Name of your AWS project.  Example: ansible-terraform-V1"
