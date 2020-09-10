@@ -28,7 +28,7 @@ provider "aws" {
 
 resource "aws_key_pair" "ubuntu" {
   key_name   = "ubuntu"
-  public_key = "jenkinskey"
+  public_key = file(var.public_key_path)
   }
 
 resource "aws_security_group" "test_sg" {
