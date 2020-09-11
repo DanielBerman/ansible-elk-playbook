@@ -15,9 +15,9 @@ provider "aws" {
   profile = "default"
   region  = "eu-west-2"
 }
-locals {
-   ssh_private_key_content = file(var.ssh_private_key_file)
-   }
+#locals {
+ #  ssh_private_key_content = file(var.ssh_private_key_file)
+#   }
   
 
 
@@ -59,7 +59,7 @@ resource "aws_security_group" "test_sg" {
 resource "aws_instance" "example" {
   # key_name         = aws_key_pair.terraform-ansible.key_name
   # key_name         = "jenkinskey"
-    key_name        = var.private_key_path
+   key_name        = var.private_key_path
    ami              = "ami-0287acb18b6d8efff"
    instance_type    = "t2.micro"
    security_groups  = ["${aws_security_group.test_sg.name}"]
@@ -81,7 +81,7 @@ resource "aws_instance" "example" {
    # private_key = file("var.private_key_path")
    # private_key = tls_private_key.example.private_key_pem
    # private_key  = var.private_key_path
-     private_key  = local.ssh_private_key_content
+   #  private_key  = local.ssh_private_key_content
    # host        = self.public_ip
     host        = aws_instance.example.public_dns
   }
