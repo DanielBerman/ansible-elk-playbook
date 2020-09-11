@@ -12,9 +12,9 @@ variable "private_key_path" {
 #  description = "Name of your AWS project.  Example: ansible-terraform-V1"
 #  default     = "ansible-terraform-V1"
 #}
-variable "ssh_private_key_file" {
-  default = "files/jenkinskey.pem"
-  }
+#variable "ssh_private_key_file" {
+#  default = "files/jenkinskey.pem"
+#  }
 
 variable "ssh_user" {
   description = "SSH user name to connect to your instance."
