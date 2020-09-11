@@ -1,11 +1,11 @@
 variable "public_key_path" {
   description = "Path to the public SSH key you want to bake into the instance."
-  default     = "~/.ssh/authorized_keys"
+  default     = "home/ubuntu/.ssh/authorized_keys"
 }
 
 variable "private_key_path" {
   description = "Path to the private SSH key, used to access the instance."
-  default     = "sshjenkins"
+  default     = "jenkinskey"
 }
 
 #variable "project_name" {
