@@ -10,10 +10,7 @@ pipeline {
      environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-        withCredentials(bindings: [sshUserPrivateKey( credentialsid: 'sshjenkins', \
-                                                      KeyFileVariable: 'SSH_KEY_FOR_SSHJENKINS', \
-                                                      passphraseVariable: '', \
-                                                      usernameVariable: '')])
+        SSH_CREDS             = credentials('sshjenkins')
     }
 
    agent  any
