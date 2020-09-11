@@ -5,7 +5,7 @@ variable "public_key_path" {
 
 variable "private_key_path" {
   description = "Path to the private SSH key, used to access the instance."
-  default     = "/Users/saziyamukadam/Downloads/jenkinskey.pem"
+  default     = "sshjenkins"
 }
 
 #variable "project_name" {
